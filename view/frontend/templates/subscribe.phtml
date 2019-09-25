@@ -1,0 +1,17 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Newsletter\Block\Subscribe $block */
+
+?>
+<div class="block newsletter">
+    <div class="title"><strong><?= $block->escapeHtml(__('Newsletter')) ?></strong></div>
+    <div class="content">
+        <?php echo $this->getLayout()->createBlock("Divvy\Newsletter\Block\CheckBlock")->setTemplate("Divvy_Newsletter::checktemplate.phtml")->toHtml(); ?>
+    </div>
+</div>

@@ -1,0 +1,93 @@
+<script>
+    require(["jquery"],function($) {
+        $(document).on('click','#unsubscribe',function() {
+            $.ajax({
+        url : '<?php echo $block->getBaseUrl(); ?>'+'div_nl/index/update',
+        showLoader: true,
+        success: function(msg){
+            if(msg == 'abc')
+            {
+                document.getElementById("unsub").style.display = "none";
+                document.getElementById("div_newsletter").style.display = "block";
+            }
+        }       
+    });
+            });
+            
+    $('button.action.subscribe.primary.sr-only').click(
+        function(){
+            
+            var values = {
+            'email': document.getElementById('newsletter').value,
+            };
+            $.ajax({
+        type : 'POST',
+        url : '<?php echo $block->getBaseUrl(); ?>'+'newsletter/subscriber/new',
+        data : values,
+        showLoader: true,
+        success: function(msg){
+            if(msg == 'Thank you for your subscription.')
+            {
+                document.getElementById("div_newsletter").style.display = "none";
+                //document.getElementById('unsub').innerHTML = "<p>You are subscribed to our newsletter. Click here to <a id='unsubscribe'>Unsubscribe</a></p>";
+                document.getElementById("unsub").style.display = "block";
+            }
+            else
+            {
+                alert(msg);
+            }
+        }       
+    });
+            // <a href="+"<php echo $block->getBaseUrl().'div_nl/index/update'; ?>"+">Unsubscribe</a></p>";
+        });
+    });
+    </script>
+   
+      
+    
+    <!-- action="<php// echo $block->getBaseUrl().'newsletter/subscriber/new'; ?>" -->
+    <!-- <form class="form subscribe"
+        novalidate
+        
+        method="post"
+        data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+        id="newsletter-validate-detail"> -->
+        
+        <div id="unsub"><p>You are subscribed to our newsletter.  
+            Click here to <a id='unsubscribe' >Unsubscribe</a>
+            <!-- <php echo $block->getBaseUrl().'div_nl/index/update'; ?> -->
+        </p>
+        </div>
+        <div id = "div_newsletter">
+            <div class="field newsletter">
+                <div class="control">
+                    <label for="newsletter">
+                        <span class="label">
+                            <?= $block->escapeHtml(__('Sign Up for Our Newsletter:')) ?>
+                        </span>
+                        <input name="email" type="email" id="newsletter"
+                                placeholder="<?= $block->escapeHtml(__('Enter email address')) ?>"
+                                data-mage-init='{"mage/trim-input":{}}'
+                                data-validate="{required:true, 'validate-email':true}"
+                        />
+                    </label>
+                </div>
+            </div>
+            <div class="actions">
+                <button class="action subscribe primary sr-only"
+                        title="<?= $block->escapeHtmlAttr(__('Subscribe')) ?>"
+                        
+                        aria-label="Subscribe">
+                    <span><?= $block->escapeHtml(__('Subscribe')) ?></span>
+                </button>
+            </div>
+        </div>
+    <?php $status = $block->getItems(); ?>
+    <?php if($status):?>
+        <script>document.getElementById("div_newsletter").style.display = "none";</script>
+    <?php else: ?>
+        <script>document.getElementById("unsub").style.display = "none";</script>
+    <?php endif; ?>
+         
+    <!-- </form> -->
+ 

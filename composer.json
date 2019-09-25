@@ -1,26 +1,22 @@
 {
   "name": "divvy/newsletter",
-  "description": "A Magento 2 module that adds fucntionality to existing newsletter subscription",
+  "description": "Adds functionality to newsletter subsription element",
   "type": "magento2-module",
-  "version": "1.0.0",
-  "license": [
-    "OSL-3.0",
-    "AFL-3.0"
+  "version": "1.4.6",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Divvy",
+      "email": "support@divvy.com",
+      "role": "Technical Support"
+    }
   ],
-  "require": {
-    "magento-hackathon/magento-composer-installer": "*",
-    "php": "~5.5.0|~5.6.0|~7.0.0",
-    "magento/framework": "~100.0.4"
-  },
   "autoload": {
-    "files": [ "registration.php" ],
-    "extra": {
-        "map": [
-            [
-                "*",
-                "Divvy/Newsletter"
-            ]
-        ]
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Divvy\\Newsletter\\": ""
     }
   }
 }

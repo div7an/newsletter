@@ -1,8 +1,8 @@
-{
+eee{
   "name": "divvy/newsletter",
   "description": "Adds functionality to newsletter subsription element",
   "type": "magento2-module",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "license": "proprietary",
   "authors": [
     {

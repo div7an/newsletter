@@ -171,7 +171,7 @@ class NewAction extends SubscriberController implements HttpPostActionInterface
                 if ($subscriber->getId()
                     && (int) $subscriber->getSubscriberStatus() === Subscriber::STATUS_SUBSCRIBED
                 ) {
-                    //$data = array('This email address is already subscribed.');
+                    $data = array('This email address is already subscribed.');
                     throw new LocalizedException(
                         
                         __('This email address is already subscribed.')
@@ -180,7 +180,8 @@ class NewAction extends SubscriberController implements HttpPostActionInterface
 
                 $status = (int) $this->_subscriberFactory->create()->subscribe($email);
                 $this->messageManager->addSuccessMessage($this->getSuccessMessage($status));
-                $data= array("Thank you for your subscription.");
+                if($this->getSuccessMessage($status) == "Thank you for your subscription.") 
+                    $data= array("Thank you for your subscription.");
             } catch (LocalizedException $e) {
                 $this->messageManager->addErrorMessage($e->getMessage());
             } catch (\Exception $e) {
